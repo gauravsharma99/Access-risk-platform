@@ -1,0 +1,25 @@
+# Maven build output
+target/
+
+# IDE
+.idea/
+*.iml
+.vscode/
+*.classpath
+*.project
+.settings/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Maven wrapper jar (properties file is useful to keep)
+.mvn/wrapper/maven-wrapper.jar
+
+# Logs
+*.log
+logs/
+
+# Environment / secrets
+.env
+*.env

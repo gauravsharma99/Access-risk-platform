@@ -1,0 +1,27 @@
+# ---------------------------------------------------------------
+# DEV profile — runs with H2 in-memory database.
+# No PostgreSQL installation required.
+# Data is wiped on every restart (in-memory).
+#
+# Activate with:  --spring.profiles.active=dev
+# ---------------------------------------------------------------
+
+spring:
+  datasource:
+    url: jdbc:h2:mem:access_risk_db;DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE;MODE=PostgreSQL
+    username: sa
+    password:
+    driver-class-name: org.h2.Driver
+
+  jpa:
+    hibernate:
+      ddl-auto: create-drop    # Creates tables on startup, drops on shutdown
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.H2Dialect
+
+  # H2 browser console — useful for inspecting tables during development
+  h2:
+    console:
+      enabled: true
+      path: /h2-console           # http://localhost:8080/h2-console

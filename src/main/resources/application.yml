@@ -1,0 +1,45 @@
+spring:
+  application:
+    name: access-risk-platform
+
+  datasource:
+    url: jdbc:postgresql://localhost:5432/access_risk_db
+    username: postgres
+    password: postgres
+    driver-class-name: org.postgresql.Driver
+    hikari:
+      maximum-pool-size: 10
+      minimum-idle: 2
+      connection-timeout: 30000
+
+  jpa:
+    hibernate:
+      # 'update' creates tables on first run and aligns columns on schema changes.
+      # Switch to 'validate' in production and manage schema with Flyway or Liquibase.
+      ddl-auto: update
+    show-sql: false           # Set to true temporarily to debug query issues
+    open-in-view: false       # Disable OSIV — forces all DB access into the service layer
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        format_sql: true
+        jdbc:
+          batch_size: 25      # Batch inserts during seed data load
+
+server:
+  port: 8080
+
+logging:
+  level:
+    com.accessrisk: INFO
+    org.hibernate.SQL: WARN           # Change to DEBUG to see all SQL
+    org.hibernate.type.descriptor: WARN
+
+springdoc:
+  api-docs:
+    path: /api-docs
+  swagger-ui:
+    path: /swagger-ui.html
+    tags-sorter: alpha
+    operations-sorter: alpha
+    display-request-duration: true    # Shows response times in Swagger UI
